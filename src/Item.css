@@ -1,0 +1,12 @@
+.Item {
+    width: 100%;
+}
+
+.Item td:first-child {
+    text-align: left;
+    width: 100%;
+}
+
+.Item td:last-child {
+    width: 1px;
+}

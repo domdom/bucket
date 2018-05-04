@@ -1,0 +1,16 @@
+.ItemInput {
+    position: fixed;
+    top: 0;
+    width: calc(100% - 6px);
+    margin: 3px;
+    height: 30px;
+}
+
+.ItemInput > input {
+    width: calc(100% - 6px);
+    height: 100%;
+}
+
+.ItemInput + * {
+    margin-top: 52px;
+}
