@@ -3,7 +3,7 @@ import Item from './Item';
 import './Bucket.css';
 
 
-function Bucket({ name, items, buckets, fooItem }) {
+function Bucket({ name, items, buckets, moveItem, removeItem }) {
     return (
         <table className="Bucket">
             <thead>
@@ -15,7 +15,8 @@ function Bucket({ name, items, buckets, fooItem }) {
                         <Item
                             key={item.id}
                             buckets={buckets}
-                            barItem={nBI => fooItem(index, nBI)}
+                            moveItem={nBI => moveItem(index, nBI)}
+                            removeItem={() => removeItem(index)}
                             {...item}/>
                     )
                 }

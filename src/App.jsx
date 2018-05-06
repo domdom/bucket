@@ -74,6 +74,15 @@ class App extends Component {
         });
     }
 
+    removeItem(curBucketIndex, curItemIndex) {
+        this.updateAndSaveState(({ buckets: [...buckets] }) => {
+            const { items: [...curItems], ...curBucket } = buckets[curBucketIndex];
+            curItems.splice(curItemIndex, 1);
+            buckets[curBucketIndex] = { items: curItems, ...curBucket };
+            return { buckets };
+        });
+    }
+
     render() {
         const { buckets } = this.state;
         const bucketNames = buckets.map(bucket => bucket.name);
@@ -86,7 +95,8 @@ class App extends Component {
                         <Bucket
                             key={index}
                             buckets={bucketNames}
-                            fooItem={(cII, nBI) => this.moveItem(index, cII, nBI)}
+                            moveItem={(cII, nBI) => this.moveItem(index, cII, nBI)}
+                            removeItem={cII => this.removeItem(index, cII)}
                             {...bucket} />
                     )
                 }

@@ -2,12 +2,12 @@ import React from 'react';
 import './Item.css';
 
 
-function Item({ text, buckets, barItem, deleteItem }) {
+function Item({ text, buckets, moveItem, removeItem }) {
     function action(index) {
         switch (index) {
             case '-2': break;
-            case '-1': deleteItem(index); break;
-            default: barItem(index); break;
+            case '-1': removeItem(); break;
+            default: moveItem(index); break;
         }
     }
     return (
