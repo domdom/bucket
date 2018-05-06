@@ -10,7 +10,7 @@ class App extends Component {
         if (props.hash) {
             const state = JSON.parse(atob(props.hash));
             this.state = state;
-            this.setStateToStorage(state);
+            this.saveStateInStorage(state);
         } else {
             this.state = this.loadStateFromStorage();
         }
@@ -35,7 +35,7 @@ class App extends Component {
         return state;
     }
 
-    setStateToStorage(state) {
+    saveStateInStorage(state) {
         const stateJson = JSON.stringify(state);
         window.localStorage.setItem('state', stateJson);
     }
@@ -44,7 +44,7 @@ class App extends Component {
         this.setState(state =>
             {
                 const newState = update(state);
-                this.saveState(newState);
+                this.saveStateInStorage(newState);
                 return newState;
             }
         );
@@ -63,7 +63,7 @@ class App extends Component {
     }
 
     moveItem(curBucketIndex, curItemIndex, newBucketIndex) {
-        this.setState(({ buckets: [...buckets] }) => {
+        this.updateAndSaveState(({ buckets: [...buckets] }) => {
             const { items: [...curItems], ...curBucket } = buckets[curBucketIndex];
             const [item] = curItems.splice(curItemIndex, 1);
             const { items: [...newItems], ...newBucket } = buckets[newBucketIndex];
