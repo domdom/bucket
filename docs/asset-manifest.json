@@ -1,6 +1,6 @@
 {
-  "main.css": "bucket/static/css/main.f83c437b.css",
-  "main.css.map": "bucket/static/css/main.f83c437b.css.map",
-  "main.js": "bucket/static/js/main.d5d2afee.js",
-  "main.js.map": "bucket/static/js/main.d5d2afee.js.map"
+  "main.css": "static/css/main.f83c437b.css",
+  "main.css.map": "static/css/main.f83c437b.css.map",
+  "main.js": "static/js/main.d5d2afee.js",
+  "main.js.map": "static/js/main.d5d2afee.js.map"
 }
