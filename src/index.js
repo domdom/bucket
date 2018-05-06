@@ -3,4 +3,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const hash = window.location.hash.substring(1);
+
+ReactDOM.render(<App hash={hash} />, document.getElementById('root'));

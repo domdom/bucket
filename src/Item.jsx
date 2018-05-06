@@ -11,15 +11,15 @@ function Item({ text, buckets, barItem, deleteItem }) {
         }
     }
     return (
-        <tr class="Item">
-            <td>{ text }</td>
+        <tr className="Item">
+            <td>{text}</td>
             <td>
-                <select onChange={ ev => action(ev.target.value) }>
+                <select onChange={ev => action(ev.target.value)}>
                     <option key={-2} value="-2">-</option>
                     <option key={-1} value="-1">Delete</option>
                     {
                         buckets.map((bucket, index) =>
-                            <option key={ index } value={ index }>{ bucket }</option>
+                            <option key={index} value={index}>{bucket}</option>
                         )
                     }
                 </select>

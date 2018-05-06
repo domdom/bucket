@@ -5,7 +5,7 @@ import './Bucket.css';
 
 function Bucket({ name, items, buckets, fooItem }) {
     return (
-        <table class="Bucket">
+        <table className="Bucket">
             <thead>
                 <tr><th colSpan="2">{ name }</th></tr>
             </thead>
@@ -13,10 +13,10 @@ function Bucket({ name, items, buckets, fooItem }) {
                 {
                     items.map((item, index) =>
                         <Item
-                            key={ item.id }
-                            buckets={ buckets }
-                            barItem={ nBI => fooItem(index, nBI) }
-                            { ...item }/>
+                            key={item.id}
+                            buckets={buckets}
+                            barItem={nBI => fooItem(index, nBI)}
+                            {...item}/>
                     )
                 }
             </tbody>

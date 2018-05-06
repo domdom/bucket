@@ -8,7 +8,7 @@ function ItemInput({ addItem }) {
         ev.target.item.value = '';
     };
     return (
-        <form class="ItemInput" onSubmit={ submit }>
+        <form className="ItemInput" onSubmit={submit}>
             <input name="item" placeholder="Add todo item" />
         </form>
     )

@@ -7,7 +7,13 @@ import './App.css';
 class App extends Component {
     constructor(props) {
         super(props);
-        this.state = this.loadStateFromStorage();
+        if (props.hash) {
+            const state = JSON.parse(atob(props.hash));
+            this.state = state;
+            this.setStateToStorage(state);
+        } else {
+            this.state = this.loadStateFromStorage();
+        }
     }
 
     loadStateFromStorage() {
@@ -29,19 +35,23 @@ class App extends Component {
         return state;
     }
 
-    saveStateToStorage(update) {
+    setStateToStorage(state) {
+        const stateJson = JSON.stringify(state);
+        window.localStorage.setItem('state', stateJson);
+    }
+
+    updateAndSaveState(update) {
         this.setState(state =>
             {
                 const newState = update(state);
-                const stateJson = JSON.stringify(newState);
-                window.localStorage.setItem('state', stateJson);
+                this.saveState(newState);
                 return newState;
             }
         );
     }
 
     addItem(item) {
-        this.saveStateToStorage(
+        this.updateAndSaveState(
             ({ nextId, buckets: [{ items, ...bucket }, ...rest] }) => ({
                 nextId: nextId+1,
                 buckets: [
@@ -67,18 +77,20 @@ class App extends Component {
     render() {
         const { buckets } = this.state;
         const bucketNames = buckets.map(bucket => bucket.name);
+        const data = btoa(JSON.stringify(this.state));
         return (
             <div className="App">
-                <ItemInput addItem={ this.addItem.bind(this) }/>
+                <ItemInput addItem={this.addItem.bind(this)}/>
                 {
                     buckets.map((bucket, index) =>
                         <Bucket
-                            key={ index }
-                            buckets={ bucketNames }
-                            fooItem={ (cII, nBI) => this.moveItem(index, cII, nBI) }
-                            { ...bucket } />
+                            key={index}
+                            buckets={bucketNames}
+                            fooItem={(cII, nBI) => this.moveItem(index, cII, nBI)}
+                            {...bucket} />
                     )
                 }
+                <a href={`#${data}`}>Sync</a>
             </div>
         );
     }
